@@ -52,3 +52,4 @@ const s = StyleSheet.create({
   switchText: { color: "#C084FC", textAlign: "center", fontSize: 14 },
 });
 
+
