@@ -9,33 +9,33 @@ export default function LoginScreen({ navigation }) {
   const [isRegister, setIsRegister] = useState(false);
 
   const handleAuth = async () => {
-    if (!email || !password) { Alert.alert("?????????????????????????"); return; }
+    if (!email || !password) { Alert.alert("Please enter email and password"); return; }
     setLoading(true);
     try {
       if (isRegister) {
         await registerWithEmail(email, password);
-        Alert.alert("?????????????????!");
+        Alert.alert("Registration successful!");
       } else {
         await loginWithEmail(email, password);
       }
     } catch (e) {
-      Alert.alert("??????????????", e.message);
+      Alert.alert("Error", e.message);
     }
     setLoading(false);
   };
 
   return (
     <View style={s.container}>
-      <Text style={s.logo}>?</Text>
+      <Text style={s.logo}>✈</Text>
       <Text style={s.title}>Travel Tribe</Text>
-      <Text style={s.subtitle}>{isRegister ? "???????????" : "???????????"}</Text>
-      <TextInput style={s.input} placeholder="?????" placeholderTextColor="#888" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
-      <TextInput style={s.input} placeholder="????????" placeholderTextColor="#888" secureTextEntry value={password} onChangeText={setPassword} />
+      <Text style={s.subtitle}>{isRegister ? "Create Account" : "Welcome Back"}</Text>
+      <TextInput style={s.input} placeholder="Email" placeholderTextColor="#888" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
+      <TextInput style={s.input} placeholder="Password" placeholderTextColor="#888" secureTextEntry value={password} onChangeText={setPassword} />
       <TouchableOpacity style={s.btn} onPress={handleAuth} disabled={loading}>
-        {loading ? <ActivityIndicator color="#fff" /> : <Text style={s.btnText}>{isRegister ? "???????????" : "???????????"}</Text>}
+        {loading ? <ActivityIndicator color="#fff" /> : <Text style={s.btnText}>{isRegister ? "Register" : "Login"}</Text>}
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setIsRegister(!isRegister)}>
-        <Text style={s.switchText}>{isRegister ? "???????????? ???????????" : "?????????????? ???????????"}</Text>
+        <Text style={s.switchText}>{isRegister ? "Already have an account? Login" : "No account? Register"}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -51,5 +51,3 @@ const s = StyleSheet.create({
   btnText: { color: "#fff", fontWeight: "800", fontSize: 16 },
   switchText: { color: "#C084FC", textAlign: "center", fontSize: 14 },
 });
-
-
