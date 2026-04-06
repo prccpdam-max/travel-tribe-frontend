@@ -9,14 +9,14 @@ export default function ProfileScreen() {
   const [tab, setTab] = useState("posts");
   const [showEdit, setShowEdit] = useState(false);
   const [name, setName] = useState("Sarah Kim");
-  const [bio, setBio] = useState("42 ???????????????? - ???????????");
+  const [bio, setBio] = useState("42 countries visited - World explorer");
   const [tempName, setTempName] = useState(name);
   const [tempBio, setTempBio] = useState(bio);
 
   const handleLogout = () => {
-    Alert.alert("??????????", "???????????????????????????", [
-      { text: "??????", style: "cancel" },
-      { text: "??????????", style: "destructive", onPress: () => signOut(auth) }
+    Alert.alert("Logout", "Are you sure you want to logout?", [
+      { text: "Cancel", style: "cancel" },
+      { text: "Logout", style: "destructive", onPress: () => signOut(auth) }
     ]);
   };
 
@@ -31,14 +31,14 @@ export default function ProfileScreen() {
       <View style={s.profileSection}>
         <View style={s.topRow}>
           <TouchableOpacity style={s.logoutBtn} onPress={handleLogout}>
-            <Text style={s.logoutText}>??????????</Text>
+            <Text style={s.logoutText}>Logout</Text>
           </TouchableOpacity>
         </View>
         <View style={s.avatar}><Text style={s.avatarText}>{name[0]}</Text></View>
         <Text style={s.name}>{name}</Text>
         <Text style={s.bio}>{bio}</Text>
         <View style={s.stats}>
-          {[["?????","48"],["?????????","2.4k"],["??????","42"]].map(([l,v]) => (
+          {[["Posts","48"],["Followers","2.4k"],["Countries","42"]].map(([l,v]) => (
             <View key={l} style={s.stat}>
               <Text style={s.statVal}>{v}</Text>
               <Text style={s.statLabel}>{l}</Text>
@@ -46,12 +46,12 @@ export default function ProfileScreen() {
           ))}
         </View>
         <TouchableOpacity style={s.editBtn} onPress={() => { setTempName(name); setTempBio(bio); setShowEdit(true); }}>
-          <Text style={s.editBtnText}>????????????</Text>
+          <Text style={s.editBtnText}>Edit Profile</Text>
         </TouchableOpacity>
       </View>
 
       <View style={s.tabs}>
-        {[["posts","?????"],["saved","??????"],["visited","??????????"]].map(([t,l]) => (
+        {[["posts","Posts"],["saved","Saved"],["visited","Visited"]].map(([t,l]) => (
           <TouchableOpacity key={t} style={[s.tab, tab===t && s.activeTab]} onPress={() => setTab(t)}>
             <Text style={[s.tabText, tab===t && s.activeTabText]}>{l}</Text>
           </TouchableOpacity>
@@ -67,16 +67,16 @@ export default function ProfileScreen() {
       <Modal visible={showEdit} transparent animationType="slide">
         <View style={s.modalOverlay}>
           <View style={s.modal}>
-            <Text style={s.modalTitle}>????????????</Text>
-            <Text style={s.label}>????</Text>
+            <Text style={s.modalTitle}>Edit Profile</Text>
+            <Text style={s.label}>Name</Text>
             <TextInput style={s.input} value={tempName} onChangeText={setTempName} placeholderTextColor="#888" />
-            <Text style={s.label}>????????</Text>
+            <Text style={s.label}>Bio</Text>
             <TextInput style={[s.input, { height: 80 }]} value={tempBio} onChangeText={setTempBio} multiline placeholderTextColor="#888" />
             <TouchableOpacity style={s.saveBtn} onPress={saveProfile}>
-              <Text style={s.saveBtnText}>??????</Text>
+              <Text style={s.saveBtnText}>Save</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setShowEdit(false)}>
-              <Text style={s.cancelText}>??????</Text>
+              <Text style={s.cancelText}>Cancel</Text>
             </TouchableOpacity>
           </View>
         </View>
