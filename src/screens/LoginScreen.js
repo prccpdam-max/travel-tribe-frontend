@@ -51,3 +51,4 @@ const s = StyleSheet.create({
   btnText: { color: "#fff", fontWeight: "800", fontSize: 16 },
   switchText: { color: "#C084FC", textAlign: "center", fontSize: 14 },
 });
+
